@@ -9,7 +9,7 @@ from backend.common.models import AbstractBase
 
 # noqa: D212,D204,D404
 
-class Users(models.Model, AbstractBase, PermissionsMixin):
+class Users(AbstractBase, PermissionsMixin):
     """
     A Class to handle user details in the farm zone App.
     """
@@ -46,7 +46,7 @@ class Users(models.Model, AbstractBase, PermissionsMixin):
 
 # noqa: D212,D204,D404
 
-class Category(models.Model, AbstractBase, PermissionsMixin):
+class Category(AbstractBase, PermissionsMixin):
     """
     Class Categorizes all the Products in the platform.
     """
@@ -75,7 +75,7 @@ class Category(models.Model, AbstractBase, PermissionsMixin):
 
 # noqa: D212,D204,D404
 
-class Pricing(models.Model, AbstractBase, PermissionsMixin):
+class Pricing(AbstractBase, PermissionsMixin):
     """
     Class to handle various products pricing.
     """
@@ -107,7 +107,7 @@ class Pricing(models.Model, AbstractBase, PermissionsMixin):
 
 # noqa: D212,D204,D404
 
-class ProductsAds(models.Model, AbstractBase, PermissionsMixin):
+class ProductsAds(AbstractBase, PermissionsMixin):
     """
     Get hold of farmers Ads products data.
     """
