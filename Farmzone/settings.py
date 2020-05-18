@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'farmzoneweb.apps.FarmzonewebConfig',
     'backend.farmzone_users',
     'backend.location',
+    'backend.marketplace',
 ]
 
 MIDDLEWARE = [
