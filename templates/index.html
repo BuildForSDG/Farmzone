@@ -13,8 +13,8 @@
     {% else %}
         <h3>Hello {{ request.user.username }}</h3>
         <div>
-            <span>Update my <a href='/accounts/profile'>profile</a></span>
-            <span>or see my <a href='/accounts/profile/ads'>My Ads</a></span>
+            <span>Update my <a href="{% url 'farmzoneweb:profile' %}">profile</a></span>
+            <span>or see my <a href="{% url 'farmzoneweb:ad-page' %}">My Ads</a></span>
         </div>
         <div><a href='/accounts/logout'>Logout</a></div>
     {% endif %}
