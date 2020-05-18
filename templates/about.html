@@ -50,17 +50,17 @@
                 <nav class="site-navigation position-relative text-right" role="navigation">
 
                     <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="listings.html">Marketplace</a></li>
-                        <li class="active"><a href="about.html">About Farmzone</a></li>
-                        <li><a href="forum.html">Forum</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="{% url 'farmzoneweb:index' %}">Home</a></li>
+                        <li><a href="{% url 'farmzoneweb:marketplace' %}">Marketplace</a></li>
+                        <li class="active"><a href="{% url 'farmzoneweb:about' %}">About Farmzone</a></li>
+                        <li><a href="{% url 'farmzoneweb:forum' %}">Forum</a></li>
+                        <li><a href="{% url 'farmzoneweb:contact' %}">Contact</a></li>
 
-                        <li class="ml-xl-3 login"><a href="login.html"><span class="border-left pl-xl-4"></span>Log
+                        <li class="ml-xl-3 login"><a href="{% url 'farmzoneweb:Login' %}"><span class="border-left pl-xl-4"></span>Log
                             In</a></li>
-                        <li><a href="register.html">Register</a></li>
+                        <li><a href="{% url 'farmzoneweb:register' %}">Register</a></li>
 
-                        <li><a href="#" class="cta"><span
+                        <li><a href="{% url 'farmzoneweb:post-item' %}" class="cta"><span
                                 class="bg-primary text-white rounded">+ Sell an Item/Service</span></a></li>
                     </ul>
                 </nav>
@@ -234,10 +234,10 @@
                         <div class="col-md-3">
                             <h2 class="footer-heading mb-4">Navigations</h2>
                             <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
+                                <li><a href="{% url 'farmzoneweb:about' %}">About Us</a></li>
                                 <li><a href="#">Services</a></li>
                                 <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="{% url 'farmzoneweb:contact' %}">Contact Us</a></li>
                             </ul>
                         </div>
                         <div class="col-md-3">
