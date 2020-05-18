@@ -146,7 +146,7 @@ class ProductsAds(AbstractBase, PermissionsMixin):
 
 # noqa: D212,D204,D404, D213
 
-class Reviews(models.Model, AbstractBase, PermissionsMixin):
+class Reviews(AbstractBase, PermissionsMixin):
     reviews_id = models.UUIDField(
         default=uuid.uuid4,
         editable=False,
