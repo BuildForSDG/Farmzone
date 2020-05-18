@@ -30,6 +30,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('login/', views.obtain_auth_token),
     path('api/', include(router.urls)),
+    path('market/', include('backend.marketplace.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('farmzoneweb.urls', namespace='farmzoneweb')),
 
