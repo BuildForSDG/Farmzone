@@ -2,11 +2,14 @@
 
 import uuid
 from django.db import models
+from django.contrib.auth.models import (PermissionsMixin)
+
+from backend.common.models import AbstractBase
 
 
 # noqa: D212,D204,D404
 
-class Users(models.Model):
+class Users(AbstractBase, PermissionsMixin):
     """
     A Class to handle user details in the farm zone App.
     """
@@ -43,7 +46,7 @@ class Users(models.Model):
 
 # noqa: D212,D204,D404
 
-class Category(models.Model):
+class Category(AbstractBase, PermissionsMixin):
     """
     Class Categorizes all the Products in the platform.
     """
@@ -72,7 +75,7 @@ class Category(models.Model):
 
 # noqa: D212,D204,D404
 
-class Pricing(models.Model):
+class Pricing(AbstractBase, PermissionsMixin):
     """
     Class to handle various products pricing.
     """
@@ -104,8 +107,7 @@ class Pricing(models.Model):
 
 # noqa: D212,D204,D404
 
-class ProductsAds(models.Model):
-
+class ProductsAds(AbstractBase, PermissionsMixin):
     """
     Get hold of farmers Ads products data.
     """
@@ -144,7 +146,7 @@ class ProductsAds(models.Model):
 
 # noqa: D212,D204,D404, D213
 
-class Reviews(models.Model):
+class Reviews(AbstractBase, PermissionsMixin):
     reviews_id = models.UUIDField(
         default=uuid.uuid4,
         editable=False,
