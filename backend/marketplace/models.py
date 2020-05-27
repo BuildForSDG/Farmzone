@@ -9,16 +9,12 @@ from backend.common.models import AbstractBase
 
 # noqa: D212,D204,D404
 
-class Users(AbstractBase, PermissionsMixin):
+class Users(AbstractBase):
     """
     A Class to handle user details in the farm zone App.
     """
 
-    user_id = models.UUIDField(
-        default=uuid.uuid4,
-        editable=False,
-        unique=True,
-        primary_key=True)
+    # user_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     full_names = models.CharField(max_length=45, null=False, blank=False)
     user_type = models.BooleanField(null=False, blank=False)
     activity = models.CharField(max_length=100, null=False, blank=False)
@@ -30,7 +26,7 @@ class Users(AbstractBase, PermissionsMixin):
     def user_data(self):
         """User computations function user_data."""
         return '{} {} {} {} {} {} {}'.format(
-            self.user_id or '',
+            self.id or '',
             self.full_names or '',
             self.user_type or '',
             self.activity or '',
@@ -46,16 +42,12 @@ class Users(AbstractBase, PermissionsMixin):
 
 # noqa: D212,D204,D404
 
-class Category(AbstractBase, PermissionsMixin):
+class Category(AbstractBase):
     """
     Class Categorizes all the Products in the platform.
     """
 
-    category_id = models.UUIDField(
-        default=uuid.uuid4,
-        editable=False,
-        unique=True,
-        primary_key=True)
+    # category_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     category_name = models.CharField(max_length=45, null=False, blank=False, unique=True)
     category_description = models.CharField(max_length=10000, null=False, blank=False)
 
@@ -63,7 +55,7 @@ class Category(AbstractBase, PermissionsMixin):
     def category_data(self):
         """Category computations function category_data."""
         return '{} {} {}'.format(
-            self.category_id or '',
+            self.id or '',
             self.category_name or '',
             self.category_description or ''
         )
@@ -75,16 +67,12 @@ class Category(AbstractBase, PermissionsMixin):
 
 # noqa: D212,D204,D404
 
-class Pricing(AbstractBase, PermissionsMixin):
+class Pricing(AbstractBase):
     """
     Class to handle various products pricing.
     """
 
-    pricing_id = models.UUIDField(
-        default=uuid.uuid4,
-        editable=False,
-        unique=True,
-        primary_key=True)
+    # pricing_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     value = models.CharField(max_length=45, blank=False, null=False)
     commodity = models.CharField(max_length=45, null=False, blank=False)
     description = models.TextField(editable=False, null=False, blank=False)
@@ -94,7 +82,7 @@ class Pricing(AbstractBase, PermissionsMixin):
     def pricing_data(self):
         """Pricing computations function pricing_data."""
         return '{} {} {} {}'.format(
-            self.pricing_id or '',
+            self.id or '',
             self.value or '',
             self.commodity or '',
             self.description or ''
@@ -107,16 +95,12 @@ class Pricing(AbstractBase, PermissionsMixin):
 
 # noqa: D212,D204,D404
 
-class ProductsAds(AbstractBase, PermissionsMixin):
+class ProductsAds(AbstractBase):
     """
     Get hold of farmers Ads products data.
     """
 
-    ads_id = models.UUIDField(
-        default=uuid.uuid4,
-        editable=False,
-        unique=True,
-        primary_key=True)
+    # ads_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     pricing_id = models.ForeignKey(Pricing, default=1, verbose_name="pricing",
                                    on_delete=models.CASCADE)
     category_id = models.ForeignKey(Category,
@@ -133,7 +117,7 @@ class ProductsAds(AbstractBase, PermissionsMixin):
     def product_data(self):
         """Ads computations function product_data."""
         return '{} {} {} {}'.format(
-            self.ads_id or '',
+            self.id or '',
             self.Ads_content or '',
             self.activity or '',
             self.Ads_title or ''
@@ -146,12 +130,8 @@ class ProductsAds(AbstractBase, PermissionsMixin):
 
 # noqa: D212,D204,D404, D213
 
-class Reviews(AbstractBase, PermissionsMixin):
-    reviews_id = models.UUIDField(
-        default=uuid.uuid4,
-        editable=False,
-        unique=True,
-        primary_key=True)
+class Reviews(AbstractBase):
+    # reviews_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     status = models.BooleanField()
     review_message = models.TextField(editable=False, null=False, blank=False)
     date = models.DateField(auto_now=True)
@@ -162,7 +142,7 @@ class Reviews(AbstractBase, PermissionsMixin):
     def reviews_data(self):
         """Reviews computations function reviews_data."""
         return '{} {} {} {}'.format(
-            self.reviews_id or '',
+            self.id or '',
             self.status or '',
             self.review_message or '',
             self.date or ''
