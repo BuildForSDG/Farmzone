@@ -32,7 +32,7 @@ class ProductsAdsSerializers(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
-    """Category Serializer."""
+    """Handle category serializer."""
 
     class Meta:
         model = models.Category
@@ -40,7 +40,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 
 
 class PricingSerializer(serializers.HyperlinkedModelSerializer):
-    """Pricing serializer."""
+    """Handle pricing serializer."""
 
     class Meta:
         model = models.Pricing
@@ -48,7 +48,7 @@ class PricingSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ReviewsSerializer(serializers.HyperlinkedModelSerializer):
-    """Review Serializer."""
+    """Handle review serializer."""
 
     class Meta:
         model = models.Reviews

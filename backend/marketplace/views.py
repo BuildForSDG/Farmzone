@@ -13,21 +13,21 @@ class ProductsAdsView(viewsets.ModelViewSet):
 
 
 class CategoryView(viewsets.ModelViewSet):
-    """Category Views."""
+    """Handle category views."""
 
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 
 class PricingViews(viewsets.ModelViewSet):
-    """Pricing Views."""
+    """Handle pricing views."""
 
     queryset = Pricing.objects.all()
     serializer_class = PricingSerializer
 
 
 class ReviewsView(viewsets.ModelViewSet):
-    """Reviews Views."""
+    """Handle review views."""
 
     queryset = Reviews.objects.all()
     serializer_class = ReviewsSerializer

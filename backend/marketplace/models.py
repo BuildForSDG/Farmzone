@@ -1,8 +1,7 @@
 """Models file handles all the API MODELS."""
 
-import uuid
+
 from django.db import models
-from django.contrib.auth.models import (PermissionsMixin)
 
 from backend.common.models import AbstractBase
 
