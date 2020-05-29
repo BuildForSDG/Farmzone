@@ -17,7 +17,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Location',
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False, unique=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False,
+                                        unique=True)),
                 ('created', models.DateTimeField(db_index=True, default=django.utils.timezone.now)),
                 ('created_by', models.UUIDField(blank=True, null=True)),
                 ('updated', models.DateTimeField(db_index=True, default=django.utils.timezone.now)),
@@ -29,7 +30,9 @@ class Migration(migrations.Migration):
                 ('country', models.CharField(max_length=100, unique=True)),
                 ('post_code', models.CharField(blank=True, max_length=20, null=True)),
                 ('zip_code', models.CharField(blank=True, max_length=10, null=True)),
-                ('coordinates', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(blank=True, max_length=10), blank=True, default=list, size=2)),
+                ('coordinates', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(blank=True,
+                                                                                                      max_length=10),
+                                                                          blank=True, default=list, size=2)),
             ],
             options={
                 'ordering': ('-updated', '-created'),
