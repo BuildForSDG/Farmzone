@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
+from decouple import config
+# from dj_database_url import parse as db_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -84,11 +86,23 @@ USE_TZ = True
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+FARMZONE_DATABASE_URL = config('FARMZONE_DATABASE_URL', default='')
+print(FARMZONE_DATABASE_URL)
+
 
 DATABASES = {
     'default': dj_database_url.config(env='FARMZONE_DATABASE_URL')
 }
-
+"""
+>>>>THIS WORKS FOR DENG<<<<<<
+DATABASES = {
+    'default': config(
+        'FARMZONE_DATABASE_URL',
+        default='django.db.backends.postgresql_psycopg2',
+        cast=db_url
+    )
+}
+"""
 AUTH_USER_MODEL = 'farmzone_users.FarmzoneUser'
 
 
