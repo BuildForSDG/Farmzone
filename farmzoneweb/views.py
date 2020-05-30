@@ -44,7 +44,7 @@ def listings(request):
     :param request:
     :return:
     """
-    return render(request, 'listings.html')
+    return render(request, 'ads/listings.html')
 
 
 def listing_single(request):
@@ -53,7 +53,7 @@ def listing_single(request):
     :param request:
     :return:
     """
-    return render(request, 'listings-single.html')
+    return render(request, 'ads/listings-single.html')
 
 
 def login(request):
@@ -62,7 +62,7 @@ def login(request):
     :param request:
     :return:
     """
-    return render(request, 'login.html')
+    return render(request, 'accounts/login.html')
 
 
 def post_item(request):
@@ -71,7 +71,7 @@ def post_item(request):
     :param request:
     :return:
     """
-    return render(request, 'postitem.html')
+    return render(request, 'ads/postitem.html')
 
 
 def profile(request):
@@ -80,7 +80,7 @@ def profile(request):
     :param request:
     :return:
     """
-    return render(request, 'profile.html')
+    return render(request, 'accounts/profile.html')
 
 
 def register(request):
@@ -89,4 +89,4 @@ def register(request):
     :param request:
     :return:
     """
-    return render(request, 'register.html')
+    return render(request, 'accounts/register.html')

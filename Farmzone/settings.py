@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
-from decouple import config
+
 # from dj_database_url import parse as db_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -86,8 +86,6 @@ USE_TZ = True
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-FARMZONE_DATABASE_URL = config('FARMZONE_DATABASE_URL', default='')
-print(FARMZONE_DATABASE_URL)
 
 
 DATABASES = {
