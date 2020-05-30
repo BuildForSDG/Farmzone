@@ -1,7 +1,7 @@
 # from django.db import models
 
 # Create your models here.
-from marketplace.models import Users
+from backend.marketplace.models import Users
 
 # Create your models here.
 from django.db import models
