@@ -89,13 +89,7 @@
                             <h1>Welcome to Our Forum</h1>
                           <!--  <p class="mb-0">Choose product you want</p>-->
 
-                          <!-- will post here my data -->
-                          <h3>Your target message to start forum</h3>
-                          <form action="{% url 'forum_url:save_thread' %}" method="post" class="form" novalidate>
-                            {% csrf_token %}
-                            <input type="text" name="thread_message" value=""  placeholder="Enter the thread" nonvalidate class="form-control">
-                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                          </form>
+
                         </div>
                     </div>
 
@@ -112,7 +106,14 @@
                 <div class="col-md-8">
 
                     <div class="row mb-3 align-items-stretch">
-
+                    <!-- will post here my data -->
+                          <h3>Your target message to start forum</h3>
+                            </br>
+                          <form action="{% url 'forum_url:save_thread' %}" method="post" class="form" novalidate>
+                            {% csrf_token %}
+                            <input type="text" name="thread_message" value=""  placeholder="Enter the thread" nonvalidate class="form-control">
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                          </form>
 					{% block content %}{% endblock %}
 
                     </div>

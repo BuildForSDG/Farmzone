@@ -44,7 +44,7 @@ def listings(request):
     :param request:
     :return:
     """
-    return render(request, 'ads/listings.html')
+    return render(request, 'listings.html')
 
 
 def listing_single(request):
@@ -53,7 +53,7 @@ def listing_single(request):
     :param request:
     :return:
     """
-    return render(request, 'ads/listings-single.html')
+    return render(request, 'listings-single.html')
 
 
 def login(request):
@@ -71,7 +71,7 @@ def post_item(request):
     :param request:
     :return:
     """
-    return render(request, 'ads/postitem.html')
+    return render(request, 'postitem.html')
 
 
 def profile(request):
