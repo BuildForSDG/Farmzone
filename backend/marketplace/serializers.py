@@ -29,3 +29,27 @@ class ProductsAdsSerializers(serializers.ModelSerializer):
         self.instance.save()
 
         return self.instance
+
+
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
+    """Handle category serializer."""
+
+    class Meta:
+        model = models.Category
+        fields = ("id", "url" "category_name", "category_description")
+
+
+class PricingSerializer(serializers.HyperlinkedModelSerializer):
+    """Handle pricing serializer."""
+
+    class Meta:
+        model = models.Pricing
+        fields = ("id", "url", "value", "commodity", "description")
+
+
+class ReviewsSerializer(serializers.HyperlinkedModelSerializer):
+    """Handle review serializer."""
+
+    class Meta:
+        model = models.Reviews
+        fields = ("id", "ürl", "status", "review_message", "date")

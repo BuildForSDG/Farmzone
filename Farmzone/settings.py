@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import dj_database_url
 
+# from dj_database_url import parse as db_url
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,6 +44,8 @@ INSTALLED_APPS = [
     'backend.farmzone_users',
     'backend.location',
     'backend.marketplace',
+    'backend.forum',
+    'backend.chat',
 ]
 
 MIDDLEWARE = [
@@ -85,10 +89,29 @@ USE_TZ = True
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': dj_database_url.config(env='FARMZONE_DATABASE_URL')
 }
-
+"""
+# >>>>THIS WORKS FOR DENG<<<<<<
+DATABASES = {
+    'default': config(
+        'FARMZONE_DATABASE_URL',
+        default='django.db.backends.postgresql_psycopg2',
+        cast=db_url
+    )
+}
+# DATABASES = {
+"""
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'testdb',
+#         'USER':'postgres',
+#         'PASSWORD':'12345678',
+#         'HOST':'127.0.0.1',
+#     }
+# }
 AUTH_USER_MODEL = 'farmzone_users.FarmzoneUser'
 
 
