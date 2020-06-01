@@ -63,12 +63,12 @@ class FarmzoneUser(AbstractBase, AbstractBaseUser, PermissionsMixin):
     # pylint: disable=missing-docstring
 
     title = models.CharField(
-        max_length=256, choices=TITLE, null=True, blank=True)
-    first_name = models.CharField(max_length=256, null=True, blank=True)
-    middle_name = models.CharField(max_length=256, null=True, blank=True)
-    last_name = models.CharField(max_length=256, null=True, blank=True)
+        max_length=255, choices=TITLE, null=True, blank=True)
+    first_name = models.CharField(max_length=255, null=True, blank=True)
+    middle_name = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
     email = models.CharField(
-        max_length=256, unique=True)
+        max_length=255, unique=True)
     phone_number = models.CharField(max_length=50, null=True, blank=True)
     gender = models.CharField(
         max_length=24, choices=GENDER, null=True, blank=True)

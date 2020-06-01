@@ -1,6 +1,6 @@
 """Farmzone URL Configuration.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
+The `urlpatterns` list routes URLs to views. For more information please see.
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
 Function views
@@ -31,6 +31,7 @@ urlpatterns = [
     path('login/', views.obtain_auth_token),
     path('api/', include(router.urls)),
     path('market/', include('backend.marketplace.urls')),
+    path('forum/', include('backend.forum.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('farmzoneweb.urls', namespace='farmzoneweb')),
 

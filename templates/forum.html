@@ -53,7 +53,7 @@
                         <li><a href="{% url 'farmzoneweb:index' %}">Home</a></li>
                         <li><a href="{% url 'farmzoneweb:marketplace' %}">Marketplace</a></li>
                         <li><a href="{% url 'farmzoneweb:about' %}">About Farmzone</a></li>
-                        <li class="active"><a href="{% url 'farmzoneweb:forum' %}">Forum</a></li>
+                        <li class="active"><a href="{#% url 'forum_url:save_thread' %}">Forum</a></li>
                         <li><a href="{% url 'farmzoneweb:contact' %}">Contact</a></li>
 
                         <li class="ml-xl-3 login"><a href="{% url 'farmzoneweb:Login' %}"><span class="border-left pl-xl-4"></span>Log
@@ -88,6 +88,14 @@
                         <div class="col-md-8 text-center">
                             <h1>Welcome to Our Forum</h1>
                           <!--  <p class="mb-0">Choose product you want</p>-->
+
+                          <!-- will post here my data -->
+                          <h3>Your target message to start forum</h3>
+                          <form action="{% url 'forum_url:save_thread' %}" method="post" class="form" novalidate>
+                            {% csrf_token %}
+                            <input type="text" name="thread_message" value=""  placeholder="Enter the thread" nonvalidate class="form-control">
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                          </form>
                         </div>
                     </div>
 
@@ -111,7 +119,7 @@
 
 
                     <div class="col-12 text-center mt-5">
-                        
+
                     </div>
                 </div>
 
@@ -125,7 +133,7 @@
                         </form>
                     </div>
 
-                  
+
                 </div>
 
             </div>

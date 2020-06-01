@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'backend.farmzone_users',
     'backend.location',
     'backend.marketplace',
+    'backend.forum',
+    'backend.chat',
 ]
 
 MIDDLEWARE = [
@@ -92,7 +94,7 @@ DATABASES = {
     'default': dj_database_url.config(env='FARMZONE_DATABASE_URL')
 }
 """
->>>>THIS WORKS FOR DENG<<<<<<
+# >>>>THIS WORKS FOR DENG<<<<<<
 DATABASES = {
     'default': config(
         'FARMZONE_DATABASE_URL',
@@ -100,7 +102,16 @@ DATABASES = {
         cast=db_url
     )
 }
+# DATABASES = {
 """
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'testdb',
+#         'USER':'postgres',
+#         'PASSWORD':'12345678',
+#         'HOST':'127.0.0.1',
+#     }
+# }
 AUTH_USER_MODEL = 'farmzone_users.FarmzoneUser'
 
 

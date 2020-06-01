@@ -1,8 +1,9 @@
 from django.db import models
 
 # Create your models here.
+import uuid
 
-from marketplace.models import Users, Category, ProductsAds
+from backend.marketplace.models import Users, Category, ProductsAds
 
 #chat table for commenting about a product
 class Chat(models.Model):
