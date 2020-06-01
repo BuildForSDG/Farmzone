@@ -34,6 +34,7 @@ class AbstractBase(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
+        """Description Class."""
         # pylint: disable=all
         abstract = True
         ordering = ('-updated', '-created')
