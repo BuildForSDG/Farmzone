@@ -5,13 +5,12 @@
 {% endblock %}
 
 {% block main_content %}
-
 <div class="span12">
   <div class="lrform">
      <h5>Login to your Account</h5>
       <div class="form">
           <form class="form-horizontal" method="post">{% csrf_token %}
-              <div class="control-group">
+{% comment %}              <div class="control-group">
                 <label class="control-label" for="username">Username</label>
                 <div class="controls">
                   {{ form.username }}
@@ -24,8 +23,8 @@
                 <div class="controls">
                   {{ form.password }}
                   {{ form.password.errors|striptags }}
-                </div>
-              </div>
+                </div>{% endcomment %}
+              {{form.as_p}}
               <div class="form-actions">
                 <button type="submit" class="btn">Login</button>
               </div>
@@ -34,5 +33,5 @@
         </div> 
    </div>
 </div>
-
+</form>
 {% endblock %}

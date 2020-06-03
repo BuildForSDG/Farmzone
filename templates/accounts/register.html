@@ -9,9 +9,11 @@
 
 
 <div class="span6">
+{% comment %}
   <p class="big grey">Morbi tincidunt posuere turpis eu laoreet</p>
   <p>Nullam in est urna. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In ut nulla est. </p>
   <p>Nullam in est urna. In vitae adipiscing enim. In ut nulla est. Nullam in est urna. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In ut nulla est. </p>
+{% endcomment %}
 
 </div>
 
@@ -22,7 +24,7 @@
           <!-- Register form (not working)-->
           <form method="post" class="form-horizontal" />{% csrf_token %}
               <!-- Name -->
-              {% for field in formset.visible_fields %}
+              {% comment %}{% for field in formset.visible_fields %}
               <div class="control-group {% if field.errors %}error{% endif %}">
                 <label class="control-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
                 <div class="controls">
@@ -37,7 +39,9 @@
                  <!-- Buttons -->
                 <button type="submit" class="btn">Register</button>
                 <button type="reset" class="btn">Reset</button>
-              </div>
+              </div>{% endcomment %}
+          {{form.as_p}}
+            <button type="submit" class="btn">Register</button>
           </form>
           Already have an Account? <a href="{% url 'farmzoneweb:Login' %}">Login</a>
         </div> 
