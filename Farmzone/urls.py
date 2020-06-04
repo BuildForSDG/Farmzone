@@ -32,6 +32,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('market/', include('backend.marketplace.urls')),
     path('forum/', include('backend.forum.urls')),
+    path('chat/', include('backend.chat.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('farmzoneweb.urls', namespace='farmzoneweb')),
 
