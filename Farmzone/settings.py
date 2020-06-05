@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 # pylint: disable:B105
 
 import os
-#import dj_database_url
 
 from decouple import config
 from dj_database_url import parse as db_url
+
+# import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,16 +43,30 @@ INSTALLED_APPS = [
 
     # our apps
     'farmzoneweb.apps.FarmzonewebConfig',
-    'backend.farmzone_users',
+    # 'backend.farmzone_users',
     'backend.location',
     'backend.marketplace',
-    'backend.forum',
+    # 'backend.forum',
     'backend.chat',
+
+    # pats addition
+    'corsheaders',
+    'django_extensions',
+    'taggit',
+    'django_filters',
+    'frontend.core',
+    'frontend.ads',
+    'users',
+    'frontend.accounts',
+    'frontend.category',
+    'frontend.forum.apps.ForumConfig'
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -89,14 +104,7 @@ USE_TZ = True
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-"""
-DATABASES = {
-    'default': dj_database_url.config(env='FARMZONE_DATABASE_URL')
-}"""
 
-"""
->>>>THIS WORKS FOR DENG<<<<<<
-"""
 DATABASES = {
     'default': config(
         'FARMZONE_DATABASE_URL',
@@ -104,8 +112,9 @@ DATABASES = {
         cast=db_url
     )
 }
-AUTH_USER_MODEL = 'farmzone_users.FarmzoneUser'
+#AUTH_USER_MODEL = 'farmzone_users.FarmzoneUser'
 
+AUTH_USER_MODEL = "accounts.User"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -151,4 +160,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+TAGGIT_CASE_INSENSITIVE = False
+
+CORS_ORIGIN_ALLOW_ALL = True

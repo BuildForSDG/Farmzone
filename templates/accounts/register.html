@@ -1,90 +1,92 @@
-{% extends 'baseaccount.html' %}
-{% block title %}Signup{% endblock %}
-{% block header %} 
-	<h2>Register Today</h2>
-{% endblock %}
+{% extends 'base.html' %}
 
-{% block main_content %}
+{% block content %}
 
-
-
-<div class="span6">
-{% comment %}
-  <p class="big grey">Morbi tincidunt posuere turpis eu laoreet</p>
-  <p>Nullam in est urna. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In ut nulla est. </p>
-  <p>Nullam in est urna. In vitae adipiscing enim. In ut nulla est. Nullam in est urna. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In ut nulla est. </p>
-{% endcomment %}
-
-</div>
-
-<div class="span6">
-  <div class="formy">
-      <h5>Register for New Account</h5>
-      <div class="form">
-          <!-- Register form (not working)-->
-          <form method="post" class="form-horizontal" />{% csrf_token %}
-              <!-- Name -->
-              {% comment %}{% for field in formset.visible_fields %}
-              <div class="control-group {% if field.errors %}error{% endif %}">
-                <label class="control-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-                <div class="controls">
-                  {{ field }}
-                  {% if field.errors %}
-                    <span class="alert alert-error"><i class="icon icon-remove"></i>{{ field.errors|striptags }}</span>
-                  {% endif %}
+    <div class="page-header" style="background: url(assets/img/banner1.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-wrapper">
+                        <h2 class="product-title">Join Us</h2>
+                        <ol class="breadcrumb">
+                            <li><a href="#">Home /</a></li>
+                            <li class="current">Register</li>
+                        </ol>
+                    </div>
                 </div>
-              </div>   
-              {% endfor %}
-              <div class="form-actions">
-                 <!-- Buttons -->
-                <button type="submit" class="btn">Register</button>
-                <button type="reset" class="btn">Reset</button>
-              </div>{% endcomment %}
-          {{form.as_p}}
-            <button type="submit" class="btn">Register</button>
-          </form>
-          Already have an Account? <a href="{% url 'farmzoneweb:Login' %}">Login</a>
-        </div> 
-      </div>
-</div>
+            </div>
+        </div>
+    </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <section class="register section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-12 col-xs-12">
+                    <div class="register-form login-area">
+                        <h3>
+                            Register
+                        </h3>
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger alert-dismissable">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <form class="login-form" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="input-icon">
+                                    <i class="lni-user"></i>
+                                    <input type="text" id="Name" class="form-control" name="username"
+                                           placeholder="Username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-icon">
+                                    <i class="lni-envelope"></i>
+                                    <input type="text" id="sender-email" class="form-control" name="email"
+                                           placeholder="Email Address">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-icon">
+                                    <i class="lni-lock"></i>
+                                    <input type="password" name="password1" class="form-control" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-icon">
+                                    <i class="lni-lock"></i>
+                                    <input type="password" name="password2" class="form-control"
+                                           placeholder="Retype Password">
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" required class="custom-control-input" id="checkedall">
+                                    <label class="custom-control-label" for="checkedall">By registering, you accept our
+                                        Terms & Conditions</label>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-common log-btn" type="submit">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

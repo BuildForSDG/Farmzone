@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Forum',
+            name='Forums',
             fields=[
                 ('forum_id', models.UUIDField(default=uuid.uuid4, primary_key=True, serialize=False, unique=True)),
                 ('forum_post', models.TextField(max_length=1255)),
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='marketplace.Users')),
             ],
             options={
-                'db_table': 'Forum',
+                'db_table': 'Forums',
             },
         ),
     ]
