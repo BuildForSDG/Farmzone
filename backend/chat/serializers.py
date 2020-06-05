@@ -4,7 +4,7 @@ from .models import  Chat
 
 
 
-class ChatSerializer(serializers.ModelSerilizer):
+class ChatSerializer(serializers.ModelSerializer):
 
     class Meta:
         '''serializing the data'''

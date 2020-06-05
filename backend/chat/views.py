@@ -5,9 +5,10 @@
 from rest_framework import viewsets
 from .serializers import ChatSerializer
 from .models import Chat
-from marketplace.models import Users , Category , ProductsAds
+from backend.marketplace.models import Users , Category , ProductsAds
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.http import HttpResponse
 
 
 class ChatViewSet(viewsets.ModelViewSet):
@@ -16,11 +17,12 @@ class ChatViewSet(viewsets.ModelViewSet):
     serializer_class = ChatSerializer
 
 ##########################################################################################
-                          ADS CHAT VIEW
+                          #ADS CHAT VIEW
 ##########################################################################################
 #id for the product ads will be gotten from the url
 # @api_view["POST"]
 def save_chats(request , product_id):
+    print("Its ookay")
     try:
         request.session["user_id"]
         try:
@@ -37,7 +39,7 @@ def save_chats(request , product_id):
                     chat_save = Chat(user_id = user_id , message=message ,ads_id=ads_id ,category_id = category_id)
                     try:
                         chat_save.save()
-                        return HttpResponse(:Successful send ads msgs)
+                        return HttpResponse("Successful send ads msgs")
                     except Exception as e:
                         return HttpResponse("An Error Occured while saving the messages")
                 else:

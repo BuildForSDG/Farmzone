@@ -102,8 +102,8 @@ DATABASES = {
         cast=db_url
     )
 }
-# DATABASES = {
 """
+# DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'testdb',

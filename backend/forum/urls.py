@@ -9,7 +9,7 @@ urlpatterns =[
 
 #thread urls
     url("^$" , views.all_threads , name = "all_threads"),
-    url("add/" , views.save_thread , name = "save_thread"),
+    url("add/$" , views.save_thread , name = "save_thread"),
     url(r"delete/(?P<threadid>[\d]+)/$" , views.delete_thread , name = "delete_thread"),
     url(r"edit/(?P<threadid>[\d]+)/$" , views.edit_thread , name = "edit_thread"),
 
