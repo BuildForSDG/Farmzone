@@ -36,10 +36,22 @@ class AdCreateView(CustomLoginRequiredMixin, CreateView):
         return kwargs
 
     def form_valid(self, form):
+        """
+
+        @param form:
+        @return:
+        """
         form.instance.user = self.request.user
         return super(AdCreateView, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
+        """
+
+        @param request:
+        @param args:
+        @param kwargs:
+        @return:
+        """
         self.object = None
         form = self.get_form()
         if form.is_valid():
@@ -64,9 +76,18 @@ class AdUpdateView(CustomLoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("users:dashboard")
 
     def get_queryset(self):
+        """
+
+        @return:
+        """
         return self.model.objects.select_related("category").filter(user=self.request.user)
 
     def get_context_data(self, **kwargs):
+        """
+
+        @param kwargs:
+        @return:
+        """
         context = super(AdUpdateView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         return context
@@ -78,6 +99,11 @@ class AdUpdateView(CustomLoginRequiredMixin, UpdateView):
         return kwargs
 
     def form_valid(self, form):
+        """
+
+        @param form:
+        @return:
+        """
         ad = form.save(commit=True)
         files = self.request.FILES.getlist('image')
         if len(files):
@@ -89,6 +115,11 @@ class AdUpdateView(CustomLoginRequiredMixin, UpdateView):
         return HttpResponseRedirect(self.get_success_url())
 
     def get_object(self, queryset=None):
+        """
+
+        @param queryset:
+        @return:
+        """
         obj = self.model.objects.get(id=self.kwargs['ad_id'])
         if obj is None:
             raise Http404("Ad doesn't exists")
@@ -102,6 +133,10 @@ class AdDeleteView(DeleteView):
     success_url = reverse_lazy('users:dashboard')
 
     def get_queryset(self):
+        """
+
+        @return:
+        """
         return self.model.objects.select_related("category").filter(user=self.request.user)
 
     def get_object(self, queryset=None):

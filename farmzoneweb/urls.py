@@ -11,7 +11,7 @@ urlpatterns = [
     # #path('admin')
     path('about.html', views.about, name='about'),
     path('contact.html', views.contact, name='contact'),
-    path('home.html', views.forum, name='forum'),
+    path('forum_home.html', views.forum, name='forum'),
     path('listings.html', views.listings, name='marketplace'),
     path('ads/listings-single.html', views.listing_single, name='ad-page'),
     path('accounts/login.html', views.login, name='Login'),

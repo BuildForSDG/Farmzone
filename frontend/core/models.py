@@ -34,11 +34,19 @@ class Ad(models.Model):
 
     @property
     def first_image_or_default(self):
+        """
+
+        @return:
+        """
         return self.ad_images.all()[
-            0].image.url if self.ad_images.count() > 0 else "/farmzone/media/ad_images/default.jpg"
+            0].image.url if self.ad_images.count() > 0 else "/media/ad_images/default.jpg"
 
     @property
     def ad_status(self):
+        """
+
+        @return:
+        """
         if self.status == 1:
             return 'active'
         elif self.status == 2:

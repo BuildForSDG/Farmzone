@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django.contrib.humanize'
     'rest_framework',
     'rest_framework.authtoken',
 
@@ -45,9 +46,9 @@ INSTALLED_APPS = [
     'farmzoneweb.apps.FarmzonewebConfig',
     # 'backend.farmzone_users',
     'backend.location',
-    'backend.marketplace',
+    # 'backend.marketplace',
     # 'backend.forum',
-    'backend.chat',
+    # 'backend.chat',
 
     # pats addition
     'corsheaders',
@@ -59,7 +60,9 @@ INSTALLED_APPS = [
     'users',
     'frontend.accounts',
     'frontend.category',
-    'frontend.forum.apps.ForumConfig'
+    'frontend.forum',
+    'widget_tweaks',
+
 
 ]
 

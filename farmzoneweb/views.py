@@ -42,7 +42,7 @@ def forum(request):
     :param request:
     :return:
     """
-    return render(request, 'home.html')
+    return render(request, 'forum_home.html')
 
 
 def listings(request):

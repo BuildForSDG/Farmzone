@@ -1,87 +1,74 @@
-from django.conf import settings
+import math
+# from django.contrib.auth.models import User
 from django.db import models
-from django.utils.text import slugify
-from django.utils.translation import gettext_lazy as _
-from django.urls import reverse
+from django.utils.html import mark_safe
+from django.utils.text import Truncator
+from django.conf import settings
 
+from markdown import markdown
 
-class Section(models.Model):
-    title = models.CharField(_("Title"), max_length=150, unique=True)
-    description = models.CharField(_("Description"), max_length=250)
-    slug = models.SlugField(max_length=50, unique=True)
+User = settings.AUTH_USER_MODEL
 
-    def __str__(self):
-        return self.title
-
-    def save(self, *args, **kwargs):
-        """
-
-        @param args:
-        @param kwargs:
-        """
-        self.slug = slugify(self.title)
-        super(Section, self).save(*args, **kwargs)
-
-
-class Forum(models.Model):
-    title = models.CharField(_("Title"), max_length=200150, unique=True)
-    description = models.CharField(_("Description"), max_length=250)
-    section = models.ForeignKey(Section, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=50, unique=True)
+class Board(models.Model):
+    name = models.CharField(max_length=30, unique=True)
+    description = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.title
+        return self.name
 
-    def save(self, *args, **kwargs):
-        """
+    def get_posts_count(self):
+        return Post.objects.filter(topic__board=self).count()
 
-        @param args:
-        @param kwargs:
-        """
-        self.slug = slugify(self.title)
-        super(Forum, self).save(*args, **kwargs)
-    
-    def get_absolute_url(self):
-        """
-
-        @return:
-        """
-        return reverse('forums_detail', kwargs={'slug': self.slug})
+    def get_last_post(self):
+        return Post.objects.filter(topic__board=self).order_by('-created_at').first()
 
 
-class Subject(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,)
-    title = title = models.CharField(_("Title"), max_length=150)
-    publish_date = models.DateTimeField(_("Date of publication"), auto_now_add=True)
-    text = models.TextField(_("Text"),)
-    forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=50, unique=True)
+class Topic(models.Model):
+    subject = models.CharField(max_length=255)
+    last_updated = models.DateTimeField(auto_now_add=True)
+    board = models.ForeignKey(
+        Board, related_name='topics', on_delete=models.CASCADE)
+    starter = models.ForeignKey(
+        User, related_name='topics', on_delete=models.CASCADE)
+    views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.title
+        return self.subject
 
-    def save(self, *args, **kwargs):
-        """
+    def get_page_count(self):
+        count = self.posts.count()
+        pages = count / 20
+        return math.ceil(pages)
 
-        @param args:
-        @param kwargs:
-        """
-        self.slug = slugify(self.title)
-        super(Subject, self).save(*args, **kwargs)
-    
-    def get_absolute_url(self):
-        """
+    def has_many_pages(self, count=None):
+        if count is None:
+            count = self.get_page_count()
+        return count > 6
 
-        @return:
-        """
-        return reverse('subject_detail', kwargs={'slug': self.slug})
+    def get_page_range(self):
+        count = self.get_page_count()
+        if self.has_many_pages(count):
+            return range(1, 5)
+        return range(1, count + 1)
+
+    def get_last_ten_posts(self):
+        return self.posts.order_by('-created_at')[:10]
 
 
-class Comments(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    Subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
-    publish_date = models.DateTimeField(_("Date of publication"), auto_now_add=True)
-    text = models.TextField(_("Text"),)
+class Post(models.Model):
+    message = models.TextField(max_length=4000)
+    topic = models.ForeignKey(
+        Topic, related_name='posts', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(null=True)
+    created_by = models.ForeignKey(
+        User, related_name='posts', on_delete=models.CASCADE)
+    updated_by = models.ForeignKey(
+        User, null=True, related_name='+', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"re: {self.Subject}"
+        truncated_message = Truncator(self.message)
+        return truncated_message.chars(30)
+
+    def get_message_as_markdown(self):
+        return mark_safe(markdown(self.message, safe_mode='escape'))
