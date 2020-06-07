@@ -3,13 +3,13 @@ from django.test import TestCase
 from django.urls import resolve, reverse
 
 from ..forms import NewTopicForm
-from ..models import Board, Post, Topic
+from ..models import Forum, Post, Topic
 from ..views import new_topic
 
 
 class NewTopicTests(TestCase):
     def setUp(self):
-        Board.objects.create(name='Forfer', description='Forfer.')
+        Forum.objects.create(name='Farmer', description='Farmers.')
         User.objects.create_user(
             username='john', email='john@doe.com', password='123')
         self.client.login(username='john', password='123')
@@ -25,14 +25,14 @@ class NewTopicTests(TestCase):
         self.assertEquals(response.status_code, 404)
 
     def test_new_topic_url_resolves_new_topic_view(self):
-        view = resolve('/boards/1/new/')
+        view = resolve('/forums/1/new/')
         self.assertEquals(view.func, new_topic)
 
-    def test_new_topic_view_contains_link_back_to_board_topics_view(self):
+    def test_new_topic_view_contains_link_back_to_forum_topics_view(self):
         new_topic_url = reverse('new_topic', kwargs={'pk': 1})
-        board_topics_url = reverse('board_topics', kwargs={'pk': 1})
+        forum_topics_url = reverse('forum_topics', kwargs={'pk': 1})
         response = self.client.get(new_topic_url)
-        self.assertContains(response, 'href="{0}"'.format(board_topics_url))
+        self.assertContains(response, 'href="{0}"'.format(forum_topics_url))
 
     def test_csrf(self):
         url = reverse('new_topic', kwargs={'pk': 1})
@@ -84,7 +84,7 @@ class NewTopicTests(TestCase):
 
 class LoginRequiredNewTopicTests(TestCase):
     def setUp(self):
-        Board.objects.create(name='Forfer', description='Forfer.')
+        Forum.objects.create(name='Farmer', description='Joe.')
         self.url = reverse('new_topic', kwargs={'pk': 1})
         self.response = self.client.get(self.url)
 

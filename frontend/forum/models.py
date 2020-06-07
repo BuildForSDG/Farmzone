@@ -9,7 +9,7 @@ from markdown import markdown
 
 User = settings.AUTH_USER_MODEL
 
-class Board(models.Model):
+class Forum(models.Model):
     name = models.CharField(max_length=30, unique=True)
     description = models.CharField(max_length=100)
 
@@ -17,17 +17,17 @@ class Board(models.Model):
         return self.name
 
     def get_posts_count(self):
-        return Post.objects.filter(topic__board=self).count()
+        return Post.objects.filter(topic__forum=self).count()
 
     def get_last_post(self):
-        return Post.objects.filter(topic__board=self).order_by('-created_at').first()
+        return Post.objects.filter(topic__forum=self).order_by('-created_at').first()
 
 
 class Topic(models.Model):
     subject = models.CharField(max_length=255)
     last_updated = models.DateTimeField(auto_now_add=True)
-    board = models.ForeignKey(
-        Board, related_name='topics', on_delete=models.CASCADE)
+    forum = models.ForeignKey(
+        Forum, related_name='topics', on_delete=models.CASCADE)
     starter = models.ForeignKey(
         User, related_name='topics', on_delete=models.CASCADE)
     views = models.PositiveIntegerField(default=0)

@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.urls import resolve, reverse
 
 from ..forms import PostForm
-from ..models import Board, Post, Topic
+from ..models import Forum, Post, Topic
 from ..views import reply_topic
 
 
@@ -13,18 +13,18 @@ class ReplyTopicTestCase(TestCase):
     '''
 
     def setUp(self):
-        self.board = Board.objects.create(
-            name='Forfer', description='Forfer.')
+        self.forum = Forum.objects.create(
+            name='Farmer', description='Joe.')
         self.username = 'john'
         self.password = '123'
         user = User.objects.create_user(
             username=self.username, email='john@doe.com', password=self.password)
         self.topic = Topic.objects.create(
-            subject='Hello, world', board=self.board, starter=user)
+            subject='Hello, world', forum=self.forum, starter=user)
         Post.objects.create(message='Lorem ipsum dolor sit amet',
                             topic=self.topic, created_by=user)
         self.url = reverse('reply_topic', kwargs={
-                           'pk': self.board.pk, 'topic_pk': self.topic.pk})
+                           'pk': self.forum.pk, 'topic_pk': self.topic.pk})
 
 
 class LoginRequiredReplyTopicTests(ReplyTopicTestCase):
@@ -45,7 +45,7 @@ class ReplyTopicTests(ReplyTopicTestCase):
         self.assertEquals(self.response.status_code, 200)
 
     def test_view_function(self):
-        view = resolve('/boards/1/topics/1/reply/')
+        view = resolve('/forums/1/topics/1/reply/')
         self.assertEquals(view.func, reply_topic)
 
     def test_csrf(self):

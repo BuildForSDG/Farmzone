@@ -1,11 +1,11 @@
 from django.test import TestCase
 from django.urls import reverse
-from ..models import Board
+from ..models import Forum
 
 
 class LoginRequiredNewTopicTests(TestCase):
     def setUp(self):
-        Board.objects.create(name='Forfer', description='Forfer.')
+        Forum.objects.create(name='Farmzone', description='Topic.')
         self.url = reverse('new_topic', kwargs={'pk': 1})
         self.response = self.client.get(self.url)
 

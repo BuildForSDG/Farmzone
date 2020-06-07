@@ -7,12 +7,12 @@ from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.urls import reverse
 from .forms import NewTopicForm, PostForm
-from .models import Board, Post, Topic
+from .models import Forum, Post, Topic
 
 
-class BoardListView(ListView):
-    model = Board
-    context_object_name = 'boards'
+class ForumListView(ListView):
+    model = Forum
+    context_object_name = 'forums'
     template_name = 'forum/home.html'
 
 
@@ -23,7 +23,7 @@ class TopicListView(ListView):
     paginate_by = 20
 
     def get_context_data(self, **kwargs):
-        kwargs['board'] = self.board
+        kwargs['forum'] = self.forum
         return super().get_context_data(**kwargs)
 
     def get_queryset(self):
@@ -31,8 +31,8 @@ class TopicListView(ListView):
 
         @return:
         """
-        self.board = get_object_or_404(Board, pk=self.kwargs.get('pk'))
-        queryset = self.board.topics.order_by(
+        self.forum = get_object_or_404(Forum, pk=self.kwargs.get('pk'))
+        queryset = self.forum.topics.order_by(
             '-last_updated').annotate(replies=Count('posts') - 1)
         return queryset
 
@@ -63,7 +63,7 @@ class PostListView(ListView):
 
         @return:
         """
-        self.topic = get_object_or_404(Topic, board__pk=self.kwargs.get(
+        self.topic = get_object_or_404(Topic, forum__pk=self.kwargs.get(
             'pk'), pk=self.kwargs.get('topic_pk'))
         queryset = self.topic.posts.order_by('created_at')
         return queryset
@@ -77,12 +77,12 @@ def new_topic(request, pk):
     @param pk:
     @return:
     """
-    board = get_object_or_404(Board, pk=pk)
+    forum = get_object_or_404(Forum, pk=pk)
     if request.method == 'POST':
         form = NewTopicForm(request.POST)
         if form.is_valid():
             topic = form.save(commit=False)
-            topic.board = board
+            topic.forum = forum
             topic.starter = request.user
             topic.save()
             Post.objects.create(
@@ -93,7 +93,7 @@ def new_topic(request, pk):
             return redirect('forum/topic_posts', pk=pk, topic_pk=topic.pk)
     else:
         form = NewTopicForm()
-    return render(request, 'forum/new_topic.html', {'board': board, 'form': form})
+    return render(request, 'forum/new_topic.html', {'forum': forum, 'form': form})
 
 
 @login_required
@@ -105,7 +105,7 @@ def reply_topic(request, pk, topic_pk):
     @param topic_pk:
     @return:
     """
-    topic = get_object_or_404(Topic, board__pk=pk, pk=topic_pk)
+    topic = get_object_or_404(Topic, forum__pk=pk, pk=topic_pk)
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -157,4 +157,4 @@ class PostUpdateView(UpdateView):
         post.updated_by = self.request.user
         post.updated_at = timezone.now()
         post.save()
-        return redirect('forum/topic_posts', pk=post.topic.board.pk, topic_pk=post.topic.pk)
+        return redirect('forum/topic_posts.html', pk=post.topic.forum.pk, topic_pk=post.topic.pk)
