@@ -17,13 +17,28 @@
 
 {% block breadcrumb %}
 <li class="breadcrumb-item"><a href="{% url 'home' %}">Forum</a></li>
-<li class="breadcrumb-item"><a href="{% url 'forum_topics' topic.forum.pk %}">{{ topic.forum.name }}</a></li>
-<li class="breadcrumb-item"><a href="{% url 'topic_posts' topic.forum.pk topic.pk %}">{{ topic.subject }}</a></li>
+<li class="breadcrumb-item"><a href="{% url 'topic_posts' topic.board.pk %}">{{ topic.board.name }}</a></li>
+<li class="breadcrumb-item"><a href="{% url 'topic_posts' topic.board.pk topic.pk %}">{{ topic.subject }}</a></li>
 <li class="breadcrumb-item active">Post a reply</li>
 {% endblock %}
 
 {% block content %}
+    <div id="hero-area">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-9 col-xs-12 text-center">
+                    <div class="contents">
+                        <h1 class="head-title">Welcome to The Largest <span class="year">Farmers Forum</span></h1>
+                        <p>Talk about everything from land, animals crops, or
+                            anything you are thinking about.</p>
 
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <form method="post" class="mb-4" novalidate>
     {% csrf_token %}
     {% include 'includes/form.html' %}

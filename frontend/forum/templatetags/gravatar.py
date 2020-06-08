@@ -6,7 +6,6 @@ from django.conf import settings
 
 register = template.Library()
 
-
 @register.filter
 def gravatar(user):
     email = user.email.lower().encode('utf-8')
@@ -16,4 +15,5 @@ def gravatar(user):
         md5=hashlib.md5(email).hexdigest(),
         params=urlencode({'d': default, 's': str(size)})
     )
+
     return url

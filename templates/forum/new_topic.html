@@ -1,14 +1,29 @@
 {% extends 'baseforum.html' %}
-
 {% block title %}Start a New Topic{% endblock %}
 
 {% block breadcrumb %}
 <li class="breadcrumb-item"><a href="{% url 'forum' %}">Forum</a></li>
-<li class="breadcrumb-item"><a href="{% url 'forum_topics' forum.pk %}">{{ forum.name }}</a></li>
+<li class="breadcrumb-item"><a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a></li>
 <li class="breadcrumb-item active">New topic</li>
 {% endblock %}
 
 {% block content %}
+        <div id="hero-area">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-9 col-xs-12 text-center">
+                    <div class="contents">
+                        <h1 class="head-title">Welcome to The Largest <span class="year">Farmers Forum</span></h1>
+                        <p>Talk about everything from land, animals crops, or
+                            anything you are thinking about.</p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <form method="post" novalidate>
     {% csrf_token %}
     {% include 'includes/form.html' %}

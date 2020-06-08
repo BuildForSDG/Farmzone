@@ -6,16 +6,33 @@
 
 {% block breadcrumb %}
 <li class="breadcrumb-item"><a href="{% url 'forum' %}">Forums</a></li>
-<li class="breadcrumb-item"><a href="{% url 'forum_topics' topic.forum.pk %}">{{ topic.forum.name }}</a></li>
+<li class="breadcrumb-item"><a href="{% url 'topic_posts' topic.board.pk %}">{{ topic.board.name }}</a></li>
 <li class="breadcrumb-item active">{{ topic.subject }}</li>
 {% endblock %}
 
-{% block content %}
+
 
 <div class="mb-4">
-    <a href="{% url 'reply_topic' topic.forum.pk topic.pk %}" class="btn btn-primary" role="button">Reply</a>
+    <a href="{% url 'reply_topic' topic.board.pk topic.pk %}" class="btn btn-primary" role="button">Reply</a>
 </div>
+{% block content%}
 
+    <div id="hero-area">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-9 col-xs-12 text-center">
+                    <div class="contents">
+                        <h1 class="head-title">Welcome to The Largest <span class="year">Farmers Forum</span></h1>
+                        <p>Talk about everything from land, animals crops, or
+                            anything you are thinking about.</p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% for post in posts %}
 <div id="{{ post.pk }}"
     class="card {% if forloop.last %}mb-4{% else %}mb-2{% endif %} {% if forloop.first %}border-dark{% endif %}">
@@ -40,7 +57,7 @@
                 {{ post.get_message_as_markdown }}
                 {% if post.created_by == user %}
                 <div class="mt-3">
-                    <a href="{% url 'edit_post' post.topic.forum.pk post.topic.pk post.pk %}"
+                    <a href="{% url 'edit_post' post.topic.board.pk post.topic.pk post.pk %}"
                         class="btn btn-primary btn-sm" role="button">Edit</a>
                 </div>
                 {% endif %}

@@ -17,10 +17,9 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework.authtoken import views
 from rest_framework.routers import DefaultRouter
-from django.views.generic.base import TemplateView
 
 # from backend.farmzone_users.views import FarmzoneUserViewSet
 
@@ -48,4 +47,5 @@ urlpatterns = [
                   path('categories', include('frontend.category.urls')),
 
                   path('', include('frontend.forum.urls')),
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+                  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

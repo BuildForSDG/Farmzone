@@ -17,39 +17,31 @@
             </div>
         </div>
     </div>
-<table class="table">
-    <thead class="thead-inverse">
-        <tr>
-            <th>Forum</th>
-            <th>Posts</th>
-            <th>Topics</th>
-            <th>Last Post</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for forum in forums %}
-        <tr>
-            <td>
-                <a href="{% url 'forum_topics' forum.pk %}">{{ forum.name }}</a>
-                <small class="text-muted d-block">{{ forum.description }}</small>
-            </td>
-            <td class="align-middle">
-                {{ forum.get_posts_count }}
-            </td>
-            <td class="align-middle">
-                {{ forum.topics.count }}
-            </td>
-            <td class="align-middle">
-                {% with post=forum.get_last_post %}
-                <small>
-                    <a href="{% url 'topic_posts' forum.pk post.topic.pk %}">
-                        By {{ post.created_by.username }} at {{ post.created_at }}
-                    </a>
-                </small>
-                {% endwith %}
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<table class="table table-borderless">
+            <thead>
+                <tr class="table-success">
+                    <th scope="col">Board</th>
+                    <th scope="col">Posts</th>
+                    <th scope="col">Topics</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for board in boards %}
+                <tr>
+                    <td scope="row">
+                        <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
+                        <small class="text-muted d-block">
+                            {{ board.description }}
+                        </small>
+                    </td>
+                    <td class="align-middle">
+                        {{ board.get_posts_count }}
+                    </td>
+                    <td class="align-middle">
+                        {{ board.topics.count }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 {% endblock %}

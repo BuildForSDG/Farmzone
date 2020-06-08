@@ -12,7 +12,6 @@ import os
 
 from decouple import config
 from dj_database_url import parse as db_url
-
 # import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -38,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django.contrib.humanize'
+    'django.contrib.humanize',
     'rest_framework',
     'rest_framework.authtoken',
 
@@ -117,7 +116,7 @@ DATABASES = {
 }
 #AUTH_USER_MODEL = 'farmzone_users.FarmzoneUser'
 
-AUTH_USER_MODEL = "accounts.User"
+AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
