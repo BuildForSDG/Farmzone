@@ -16,6 +16,10 @@ class AdDetailsView(DetailView):
     context_object_name = "ad"
 
     def get_queryset(self):
+        """
+
+        @return:
+        """
         return self.model.objects.select_related("category").select_related("user").all()
 
 
@@ -25,6 +29,11 @@ class AdCreateView(CustomLoginRequiredMixin, CreateView):
     success_url = reverse_lazy('accounts:login')
 
     def get_context_data(self, **kwargs):
+        """
+
+        @param kwargs:
+        @return:
+        """
         context = super(AdCreateView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         return context

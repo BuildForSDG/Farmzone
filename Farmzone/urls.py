@@ -28,7 +28,7 @@ router = DefaultRouter()
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  # path("", TemplateView.as_view(template_name="home.html"), name="home"),
+                  # path("", TemplateView.as_view(template_name="oldhome.html"), name="home"),
                   path('api-auth/', include('rest_framework.urls')),
                   path('login/', views.obtain_auth_token),
                   path('api/', include(router.urls)),

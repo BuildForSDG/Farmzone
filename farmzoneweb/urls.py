@@ -6,17 +6,6 @@ from . import views
 app_name = 'farmzoneweb'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('index.html', views.index, name='index'),
-    # #path('admin')
-    path('about.html', views.about, name='about'),
-    path('contact.html', views.contact, name='contact'),
-    path('forum_home.html', views.forum, name='forum'),
-    path('listings.html', views.listings, name='marketplace'),
-    path('ads/listings-single.html', views.listing_single, name='ad-page'),
-    path('accounts/login.html', views.login, name='Login'),
-    path('postitem.html', views.post_item, name='post-item'),
-    path('accounts/profile.html', views.profile, name='profile'),
-    path('accounts/register.html', views.register, name='register'),
+
 
 ]

@@ -5,6 +5,11 @@ from frontend.core.models import *
 
 
 class AdCreateForm(forms.ModelForm):
+
+    """
+    Add an Ad
+    """
+
     class Meta:
         model = Ad
         exclude = ("user",)
@@ -14,11 +19,19 @@ class AdCreateForm(forms.ModelForm):
         super(AdCreateForm, self).__init__(*args, **kwargs)
 
     def clean(self):
+        """
+
+        @return:
+        """
         self._validate_unique = True
         self.validate_ad_images()
         return self.cleaned_data
 
     def validate_ad_images(self):
+
+        """
+        check for blank ads images
+        """
         images = self.request.FILES.getlist('image')
         if images:
             for image in images:
@@ -29,6 +42,10 @@ class AdCreateForm(forms.ModelForm):
 
 
 class AdUpdateForm(forms.ModelForm):
+
+    """
+    Up date ad
+    """
     class Meta:
         model = Ad
         exclude = ("user",)
@@ -58,7 +75,7 @@ class AdUpdateForm(forms.ModelForm):
                 if image.size > 1 * 1024 * 1024:
                     raise ValidationError("Image file too large ( > 1mb )")
         else:
-            raise ValidationError("Couldn't read uploaded images")
+            raise ValidationError("Couldn't read uploaded images2")
 
 
 class AdImageForm(forms.ModelForm):

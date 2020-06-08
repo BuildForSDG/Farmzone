@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load static %}
 {% block content %}
 
@@ -29,8 +28,8 @@
                                                 <option value="" selected name="category">Select Category</option>
 
                                                 {% for category in categories %}
-                                                    <option value="{{ category.id }}">{{ category.title }}</option>
-                                                {% endfor %}
+                                                        <option value="{{ category.id }}">{{ category.title }}</option>
+                                                    {% endfor %}
                                             </select>
                                         </div>
                                         <i class="lni-menu"></i>
@@ -72,6 +71,7 @@
     </section>
 
 
+
     <section class="featured section-padding">
         <div class="container">
             <h1 class="section-title">Latest Products</h1>
@@ -104,7 +104,7 @@
                                 </div>
                                 <p class="dsc" style="min-width: 320px; min-height: 80px">{{ ad.description|safe|truncatechars:110 }}</p>
                                 <div class="listing-bottom">
-                                    <h3 class="price float-left">Ksh{{ ad.price }}</h3>
+                                    <h3 class="price float-left">${{ ad.price }}</h3>
                                     <a href="{% url 'ads:ad.details' ad.id %}" class="btn btn-common float-right">View
                                         Details</a>
                                 </div>
@@ -136,7 +136,7 @@
                                         <div class="btn-product bg-sale">
                                             <a href="#">Sale</a>
                                         </div>
-                                        <span class="price">Ksh 999.00</span>
+                                        <span class="price">$999.00</span>
                                     </div>
                                     <div class="product-content">
                                         <h3 class="product-title"><a href="ads/add_details.html">Tractor</a></h3>
@@ -175,7 +175,7 @@
                                                 <a class="btn btn-common" href="ads/add_details.html">View Details</a>
                                             </div>
                                         </div>
-                                        <span class="price">Ksh 269.00</span>
+                                        <span class="price">$269.00</span>
                                     </div>
                                     <div class="product-content">
                                         <h3 class="product-title"><a href="ads/add_details.html">Cow</a></h3>
@@ -218,7 +218,7 @@
                                         <div class="btn-product bg-slod">
                                             <a href="#">Sold</a>
                                         </div>
-                                        <span class="price">Ksh 799.00</span>
+                                        <span class="price">$799.00</span>
                                     </div>
                                     <div class="product-content">
                                         <h3 class="product-title"><a href="ads/add_details.html">Agricultural Land</a>
@@ -258,7 +258,7 @@
                                                 <a class="btn btn-common" href="ads/add_details.html">View Details</a>
                                             </div>
                                         </div>
-                                        <span class="price">Ksh99.00</span>
+                                        <span class="price">$99.00</span>
                                     </div>
                                     <div class="product-content">
                                         <h3 class="product-title"><a href="ads/add_details">Tree Seedlings</a></h3>
@@ -297,7 +297,7 @@
                                                 <a class="btn btn-common" href="ads/add_details">View Details</a>
                                             </div>
                                         </div>
-                                        <span class="price">Ksh 99.00</span>
+                                        <span class="price">$99.00</span>
                                     </div>
                                     <div class="product-content">
                                         <h3 class="product-title"><a href="ads/add_details">Harvestor</a></h3>
@@ -339,7 +339,7 @@
                                         <div class="btn-product bg-sale">
                                             <a href="#">Sale</a>
                                         </div>
-                                        <span class="price">Ksh 99.00</span>
+                                        <span class="price">$99.00</span>
                                     </div>
                                     <div class="product-content">
                                         <h3 class="product-title"><a href="ads/add_details.html">Cabbage</a></h3>

@@ -46,6 +46,3 @@ class ListingListView(ListView):
         @return:
         """
         return self.model.objects.select_related("category").filter(status=1)
-
-
-

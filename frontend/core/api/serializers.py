@@ -3,7 +3,6 @@ from django.template.defaultfilters import truncatechars
 from django.utils.html import strip_tags
 from rest_framework.reverse import reverse_lazy
 
-import frontend
 from frontend.core.models import *
 
 
@@ -15,6 +14,11 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_total_ads(self, obj):
+        """
+
+        @param obj:
+        @return:
+        """
         return obj.ad_set.count()
 
 
@@ -36,7 +40,17 @@ class AdSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_description(self, obj):
+        """
+
+        @param obj:
+        @return:
+        """
         return truncatechars(strip_tags(obj.description), 100)
 
     def get_url(self, obj):
+        """
+
+        @param obj:
+        @return:
+        """
         return reverse_lazy('ads:ad.details', kwargs={'ad_id': obj.id})
