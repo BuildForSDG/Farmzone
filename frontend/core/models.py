@@ -5,6 +5,10 @@ from frontend.accounts.models import User
 
 
 class Category(models.Model):
+    """
+
+    @return:
+    """
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
@@ -18,6 +22,10 @@ class Category(models.Model):
 
 
 class Ad(models.Model):
+    """
+
+    @return:
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, verbose_name="Ad title")
@@ -58,5 +66,9 @@ class Ad(models.Model):
 
 
 class AdImage(models.Model):
+    """
+
+    @return:
+    """
     ad = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name="ad_images")
     image = models.ImageField(verbose_name="Ad image", upload_to="ad_images")

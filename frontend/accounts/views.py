@@ -18,11 +18,22 @@ class RegisterView(CreateView):
     }
 
     def dispatch(self, request, *args, **kwargs):
+        """
+
+        @param request:
+        @param args:
+        @param kwargs:
+        @return:
+        """
         if self.request.user.is_authenticated:
             return HttpResponseRedirect(self.get_success_url())
         return super().dispatch(self.request, *args, **kwargs)
 
     def get_success_url(self):
+        """
+
+        @return:
+        """
         return self.success_url
 
     def post(self, request, *args, **kwargs):
@@ -53,6 +64,13 @@ class LoginView(FormView):
     }
 
     def dispatch(self, request, *args, **kwargs):
+        """
+
+        @param request:
+        @param args:
+        @param kwargs:
+        @return:
+        """
         if self.request.user.is_authenticated:
             return HttpResponseRedirect(self.get_success_url())
         return super().dispatch(self.request, *args, **kwargs)
@@ -68,13 +86,27 @@ class LoginView(FormView):
     #     return super(Login, self).dispatch(request, *args, **kwargs)
 
     def get_form_class(self):
+        """
+
+        @return:
+        """
         return self.form_class
 
     def form_valid(self, form):
+        """
+
+        @param form:
+        @return:
+        """
         auth.login(self.request, form.get_user())
         return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form):
+        """
+
+        @param form:
+        @return:
+        """
         return self.render_to_response(self.get_context_data(form=form))
 
 
@@ -85,6 +117,13 @@ class LogoutView(RedirectView):
     url = reverse_lazy('core:home')
 
     def get(self, request, *args, **kwargs):
+        """
+
+        @param request:
+        @param args:
+        @param kwargs:
+        @return:
+        """
         auth.logout(request)
         messages.success(request, 'You are now logged out')
         return super(LogoutView, self).get(request, *args, **kwargs)

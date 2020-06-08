@@ -4,6 +4,10 @@ from frontend.core.models import *
 
 
 class IndexView(ListView):
+    """
+
+    @return:
+    """
     template_name = "index.html"
     model = Ad
     context_object_name = "ads"
@@ -28,6 +32,10 @@ class IndexView(ListView):
 
 
 class ListingListView(ListView):
+    """
+
+    @return:
+    """
     model = Ad
     template_name = "listings.html"
     context_object_name = "ads"

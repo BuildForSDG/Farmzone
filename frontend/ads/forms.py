@@ -38,12 +38,20 @@ class AdUpdateForm(forms.ModelForm):
         super(AdUpdateForm, self).__init__(*args, **kwargs)
 
     def clean(self):
+        """
+
+        @return:
+        """
         self._validate_unique = True
         if len(self.request.FILES.getlist('image')) > 0:
             self.validate_ad_images()
         return self.cleaned_data
 
     def validate_ad_images(self):
+        """
+
+        @return:
+        """
         images = self.request.FILES.getlist('image')
         if images:
             for image in images:
