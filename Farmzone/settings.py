@@ -14,6 +14,8 @@ from decouple import config
 from dj_database_url import parse as db_url
 # import dj_database_url
 
+# import dj_database_url
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -116,6 +118,7 @@ DATABASES = {
 }
 #AUTH_USER_MODEL = 'farmzone_users.FarmzoneUser'
 
+
 AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
@@ -179,3 +182,6 @@ MEDIA_URL = '/media/'
 TAGGIT_CASE_INSENSITIVE = False
 
 CORS_ORIGIN_ALLOW_ALL = True
+=======
+STATIC_URL = '/static/'
+

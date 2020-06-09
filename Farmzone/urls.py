@@ -27,6 +27,7 @@ router = DefaultRouter()
 # router.register(r'users', FarmzoneUserViewSet)
 
 urlpatterns = [
+
                   path('admin/', admin.site.urls),
                   # path("", TemplateView.as_view(template_name="oldhome.html"), name="home"),
                   path('api-auth/', include('rest_framework.urls')),
@@ -49,3 +50,4 @@ urlpatterns = [
                   path('', include('frontend.forum.urls')),
 
                   ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
