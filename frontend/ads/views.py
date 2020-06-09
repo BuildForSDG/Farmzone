@@ -24,9 +24,16 @@ class AdDetailsView(DetailView):
 
 
 class AdCreateView(CustomLoginRequiredMixin, CreateView):
+    """
+    Add your Ad to DB
+    """
     template_name = 'ads/create.html'
     form_class = AdCreateForm
     success_url = reverse_lazy('accounts:login')
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.object = None
 
     def get_context_data(self, **kwargs):
         """
