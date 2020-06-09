@@ -17,6 +17,9 @@ class UserRegistrationForm(UserCreationForm):
         # self.fields['email'].widget.attrs['placeholder'] = self.fields['email'].label or 'email@address.nl'
 
     class Meta:
+        """
+        Doc
+        """
         model = User
         fields = ("username",
                   "email",
