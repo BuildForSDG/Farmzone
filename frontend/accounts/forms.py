@@ -5,7 +5,9 @@ from .models import User
 
 
 class UserRegistrationForm(UserCreationForm):
-
+    """
+    Doc
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({'placeholder': 'Enter Username'})
@@ -21,12 +23,11 @@ class UserRegistrationForm(UserCreationForm):
                   "password1",
                   "password2")
 
-        # widgets = {
-        #     'password1': forms.TextInput(attrs={'placeholder': 'Password'}),
-        #     'password2': forms.TextInput(attrs={'placeholder': 'Repeat your password'}),
-        # }
-
     def clean_username(self):
+        """
+
+        @return:
+        """
         username = self.cleaned_data['username']
         print(username)
         if ' ' in username:
@@ -34,6 +35,11 @@ class UserRegistrationForm(UserCreationForm):
         return username
 
     def save(self, commit=True):
+        """
+
+        @param commit:
+        @return:
+        """
         user = super(UserCreationForm, self).save(commit=False)
         user.username = self.cleaned_data['username']
         user.email = self.cleaned_data['email']
@@ -57,6 +63,12 @@ class UserLoginForm(forms.Form):
         self.fields['password'].widget.attrs.update({'placeholder': 'Enter Password'})
 
     def clean(self, *args, **kwargs):
+        """
+
+        @param args:
+        @param kwargs:
+        @return:
+        """
         email = self.cleaned_data.get("email")
         password = self.cleaned_data.get("password")
 
@@ -74,4 +86,8 @@ class UserLoginForm(forms.Form):
         return super(UserLoginForm, self).clean(*args, **kwargs)
 
     def get_user(self):
+        """
+
+        @return:
+        """
         return self.user
