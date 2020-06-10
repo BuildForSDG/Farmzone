@@ -182,6 +182,6 @@ MEDIA_URL = '/media/'
 TAGGIT_CASE_INSENSITIVE = False
 
 CORS_ORIGIN_ALLOW_ALL = True
-=======
+
 STATIC_URL = '/static/'
 
