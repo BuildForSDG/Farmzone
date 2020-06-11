@@ -1,0 +1,50 @@
+{% extends 'baseforum.html' %}
+
+{% load static %}
+
+{% block title %}Edit post{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'js/simplemde.min.js' %}"></script>
+<script>
+        var simplemde = new SimpleMDE();
+</script>
+{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'forum' %}">Forum Boards</a></li>
+<li class="breadcrumb-item"><a href="{% url 'topic_posts' post.topic.board.pk %}">{{ post.topic.board.name }}</a></li>
+<li class="breadcrumb-item"><a
+                href="{% url 'topic_posts' post.topic.board.pk post.topic.pk %}">{{ post.topic.subject }}</a></li>
+<li class="breadcrumb-item active">Edit post</li>
+{% endblock %}
+
+{% block content %}
+        <div id="hero-area">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-9 col-xs-12 text-center">
+                    <div class="contents">
+                        <h1 class="head-title">Welcome to The Largest <span class="year">Farmers Forum</span></h1>
+                        <p>Talk about everything from land, animals crops, or
+                            anything you are thinking about.</p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<form method="post" class="mb-4" novalidate>
+        {% csrf_token %}
+        {% include 'includes/form.html' %}
+        <button type="submit" class="btn btn-success">Save changes</button>
+        <a href="{% url 'topic_posts' post.topic.board.pk post.topic.pk %}" class="btn btn-outline-secondary"
+                role="button">Cancel</a>
+</form>
+{% endblock %}

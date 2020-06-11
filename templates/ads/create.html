@@ -1,154 +1,159 @@
-{% extends 'baseads.html' %}
-{% block title %}Create classified{% endblock %}
-{% block header %} 
-    <h2>Create classified</h2>
-{% endblock %}
+{% extends 'base.html' %}
+{% load static %}
 
-{% block main_content %}
+{% block stylesheets %}
 
-<form method='post' class="create-ad" enctype='multipart/form-data'>
-    {% csrf_token %}
-    <div class="span8 noleft">
-        <div class="well tospan7">
-
-            <div class="span7 {% if formset.title.errors %}wrap-error{% endif %}">
-              {{ formset.title }}
-              {% if formset.title.errors %}
-                <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.title.errors|striptags }}</span>
-              {% endif %}
-            </div>
-
-            <div class="span7 {% if formset.content.errors %}wrap-error{% endif %}">
-              {{ formset.content }}
-              {% if formset.content.errors %}
-                <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.content.errors|striptags }}</span>
-              {% endif %}
-            </div>
-            
-            <div class="clearfix">
-                <div class="span2 {% if formset.image_1.errors %}wrap-error{% endif %}">
-                  {{ formset.image_1 }}
-                  <!--<button class="btn"><i class="icon-paper-clip"></i>Add image</button>-->
-                  {% if formset.image_1.errors %}
-                    <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.image_1.errors|striptags }}</span>
-                  {% endif %}
-                </div>
-
-                <div class="span2 {% if formset.image_2.errors %}wrap-error{% endif %}">
-                  {{ formset.image_2 }}
-                  {% if formset.image_2.errors %}
-                    <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.image_2.errors|striptags }}</span>
-                  {% endif %}
-                </div>
-                <div class="span2 {% if formset.image_3.errors %}wrap-error{% endif %}">
-                  {{ formset.image_3 }}
-                  {% if formset.image_3.errors %}
-                    <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.image_3.errors|striptags }}</span>
-                  {% endif %}
-                </div>
-
-            </div>
-
-            <hr/>
-
-            <div class="controls controls-row">
-              <div class="span3 {% if formset.price.errors %}wrap-error{% endif %}">
-                {{ formset.price }}
-                {% if formset.price.errors %}
-                  <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.price.errors|striptags }}</span>
-                {% endif %}
-              </div>
-              <div class="span3 {% if formset.currency.errors %}wrap-error{% endif %}">
-                {{ formset.currency }}
-                {% if formset.currency.errors %}
-                  <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.currency.errors|striptags }}</span>
-                {% endif %}
-              </div>
-
-              <div class="span3 {% if formset.category.errors %}wrap-error{% endif %}">
-                {{ formset.category }}
-                {% if formset.category.errors %}
-                  <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.category.errors|striptags }}</span>
-                {% endif %}
-              </div>
-              <div class="span3 {% if formset.type.errors %}wrap-error{% endif %}">
-                {{ formset.type }}
-                {% if formset.type.errors %}
-                  <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.type.errors|striptags }}</span>
-                {% endif %}
-              </div>
-            </div>
-        </div>
-    </div>
-    <div class="span4 noleft">
-        <div class="well tospan3">
-            <h6>Contact info</h6>
-
-
-            <div class="span3 {% if formset.city.errors %}wrap-error{% endif %}">
-              {{ formset.city }}
-              {{ formset.city_id }}
-              {% if formset.city.errors %}
-                <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.city.errors|striptags }}</span>
-              {% endif %}
-            </div>
-
-            <div class="span3 {% if formset.contact_address.errors %}wrap-error{% endif %}">
-              {{ formset.contact_address }}
-              {% if formset.contact_address.errors %}
-                <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.contact_address.errors|striptags }}</span>
-              {% endif %}
-            </div>
-
-            <div class="span3 {% if formset.contact_phone.errors %}wrap-error{% endif %}">
-              {{ formset.contact_phone }}
-              {% if formset.contact_phone.errors %}
-                <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.contact_phone.errors|striptags }}</span>
-              {% endif %}
-            </div>
-
-            <div class="span3 {% if formset.contact_name.errors %}wrap-error{% endif %}">
-              {{ formset.contact_name }}
-              {% if formset.contact_name.errors %}
-                <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.contact_name.errors|striptags }}</span>
-              {% endif %}
-            </div>
-
-            <div class="span3 {% if formset.contact_email.errors %}wrap-error{% endif %}">
-              {{ formset.contact_email }}
-              {% if formset.contact_email.errors %}
-                <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.contact_email.errors|striptags }}</span>
-              {% endif %}
-            </div>
-
-            <div class="span3 {% if formset.google_map.errors %}wrap-error{% endif %}">
-              {{ formset.google_map }}
-              {% if formset.google_map.errors %}
-                <span class="alert alert-error"><i class="icon icon-remove"></i>{{ formset.google_map.errors|striptags }}</span>
-              {% endif %}
-            </div>
-
-            <button class="btn btn-primary">Publish Ad</button>
-            <button class="btn btn-danger">Cancel</button>
-        </div>
-    </div>
-</form>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/tagsinput.css' %}">
 
 {% endblock %}
 
-{% block inline_script %}
-<script>
-$(document).ready(function(){
-    $('.controls-row').find('input,select').addClass('span3');
-    $('input, textarea').each(function(i, e) {
-      $(e).attr('placeholder', $(e).attr('name').preety().ucwords());
-    });
-    $('.tospan3').find('input, select, textarea').each(function(i, e) {
-      $(e).addClass('span3');
-    });
-    $('.tospan7').find('input, select, textarea').each(function(i, e) {
-      $(e).addClass('span7');
-    });
-});
-</script>
+{% block content %}
+
+    <div class="page-header" style="background: url('{% static 'assets/img/banner1.jpg' %}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-wrapper">
+                        <h2 class="product-title">Post you Ads</h2>
+                        <ol class="breadcrumb">
+                            <li><a href="#">Home /</a></li>
+                            <li class="current">Post you Ads</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content" class="section-padding">
+        <div class="container">
+            <div class="row">
+                {% include 'includes/sidebar.html' %}
+
+                <div class="col-sm-12 col-md-8 col-lg-9">
+                    <div class="row page-content">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            {% if form.errors %}
+                                {% for error in form.non_field_errors %}
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="inner-box">
+                                    <div class="dashboard-box">
+                                        <h2 class="dashbord-title">Ad Detail</h2>
+                                    </div>
+                                    <div class="dashboard-wrapper">
+                                        <div class="form-group mb-3">
+                                            <label class="control-label">Title</label>
+                                            <input class="form-control input-md" name="title" placeholder="Title"
+                                                   type="text" required value="{{ form.title.value|default:'' }}">
+                                            {% if 'title' in form.errors %}
+                                                {% for error in form.title.errors %}
+                                                    <div class="alert alert-danger alert-dismissable">
+                                                        <a href="#" class="close" data-dismiss="alert"
+                                                           aria-label="close">&times;</a>
+                                                        <strong>{{ error|escape }}</strong>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group mb-3 tg-inputwithicon">
+                                            <label class="control-label">Categories</label>
+                                            <div class="tg-select form-control">
+                                                <select name="category" required>
+                                                    <option value="" selected>Select Category</option>
+                                                    {% for category in categories %}
+                                                        <option value="{{ category.id }}">{{ category.title }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            {% if 'category' in form.errors %}
+                                                {% for error in form.category.errors %}
+                                                    <div class="alert alert-danger alert-dismissable">
+                                                        <a href="#" class="close" data-dismiss="alert"
+                                                           aria-label="close">&times;</a>
+                                                        <strong>{{ error|escape }}</strong>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="control-label">Price</label>
+                                            <input class="form-control input-md" name="price"
+                                                   placeholder="Your Price"
+                                                   type="number" required value="{{ form.price.value|default:'' }}">
+                                            {% if 'price' in form.errors %}
+                                                {% for error in form.price.errors %}
+                                                    <div class="alert alert-danger alert-dismissable">
+                                                        <a href="#" class="close" data-dismiss="alert"
+                                                           aria-label="close">&times;</a>
+                                                        <strong>{{ error|escape }}</strong>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="control-label">Tags</label>
+                                            <input class="form-control input-md" name="tags"
+                                                   placeholder="Add Tags"
+                                                   data-role="tagsinput"
+                                                   type="text" required value="{{ form.tags.value|default:'' }}">
+                                        </div>
+                                        <div class="form-group md-3">
+                                            <label class="control-label">Description</label>
+                                            <textarea required class="form-control input-md"
+                                                      rows="5"
+                                                      name="description">{{ form.description.value|default:'' }}</textarea>
+
+                                            {% if 'description' in form.errors %}
+                                                {% for error in form.description.errors %}
+                                                    <div class="alert alert-danger alert-dismissable">
+                                                        <a href="#" class="close" data-dismiss="alert"
+                                                           aria-label="close">&times;</a>
+                                                        <strong>{{ error|escape }}</strong>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                        <label class="tg-fileuploadlabel" for="tg-photogallery">
+                                            <span>Drop files anywhere to upload</span>
+                                            <span>Or</span>
+                                            <span class="btn btn-common">Select Files</span>
+                                            <span>Maximum upload file size: 1MB</span>
+                                            <input id="tg-photogallery" required class="tg-fileinput" multiple
+                                                   type="file"
+                                                   accept="image/*"
+                                                   name="image">
+                                        </label>
+                                    </div>
+                                    <button class="btn btn-common" type="submit">Post Ad</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript" src="{% static 'assets/js/tagsinput.js' %}"></script>
+
+    <script type="text/javascript">
+        $('#summernote').summernote({
+            height: 250, // set editor height
+            minHeight: null, // set minimum height of editor
+            maxHeight: null, // set maximum height of editor
+            focus: false // set focus to editable area after initializing summernote
+        });
+    </script>
+
 {% endblock %}

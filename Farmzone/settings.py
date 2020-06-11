@@ -12,6 +12,7 @@ import os
 
 from decouple import config
 from dj_database_url import parse as db_url
+# import dj_database_url
 
 # import dj_database_url
 
@@ -38,21 +39,38 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'rest_framework',
     'rest_framework.authtoken',
 
     # our apps
     'farmzoneweb.apps.FarmzonewebConfig',
-    'backend.farmzone_users',
+    # 'backend.farmzone_users',
     'backend.location',
-    'backend.marketplace',
-    'backend.forum',
-    'backend.chat',
+    # 'backend.marketplace',
+    # 'backend.forum',
+    # 'backend.chat',
+
+    # pats addition
+    'corsheaders',
+    'django_extensions',
+    'taggit',
+    'django_filters',
+    'frontend.core',
+    'frontend.ads',
+    'users',
+    'frontend.accounts',
+    'frontend.category',
+    'frontend.forum',
+    'widget_tweaks',
+
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -98,7 +116,10 @@ DATABASES = {
         cast=db_url
     )
 }
-AUTH_USER_MODEL = 'farmzone_users.FarmzoneUser'
+#AUTH_USER_MODEL = 'farmzone_users.FarmzoneUser'
+
+
+AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -144,4 +165,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+TAGGIT_CASE_INSENSITIVE = False
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+STATIC_URL = '/static/'
+

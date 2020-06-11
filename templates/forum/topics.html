@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+<br>
+<br>
+<br>
+<br>
+{% load humanize %}
+
+{% block title %}
+    Boards - {{ board.name }} 
+{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'forum' %}">Boards</a>
+    </li>
+    <li class="breadcrumb-item active">{{ board.name }}</li>
+{% endblock  %}
+
+{% block content %}
+        <div id="hero-area">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-9 col-xs-12 text-center">
+                    <div class="contents">
+                        <h1 class="head-title">Welcome to The Largest <span class="year">Farmers Forum</span></h1>
+                        <p>Talk about everything from land, animals crops, or
+                            anything you are thinking about.</p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="mb-4">
+		<a class="btn btn-primary" href="{% url 'new_topic' board.pk %}">
+			New Topic
+		</a>
+	</div>
+
+	{% for topic in topics %}
+		{% url 'topic_posts' board.pk topic.pk as topic_url %}
+		<div class="list-group mb-2">
+			<div class="list-group-item">
+				<h5 class="mb-1 py-3">
+					<a href="{{ topic_url }}" class="text-decoration-none">
+						{{ topic.subject }}
+					</a>
+				</h5>
+				<div class="d-flex w-100 justify-content-between">
+                    <small>
+						<p>{{ topic.starter.username }}</p>
+					</small>
+                    <small>Views: {{ topic.views }}</small>
+                    <small>{{ topic.last_updated|naturaltime }}</small>
+                </div>
+			</div>
+		</div>
+	{% endfor %}
+
+	{% include 'includes/pagination.html' %}
+{% endblock %}
