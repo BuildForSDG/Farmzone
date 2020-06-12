@@ -117,8 +117,6 @@ DATABASES = {
         cast=db_url
     )
 }
-# AUTH_USER_MODEL = 'farmzone_users.FarmzoneUser'
-
 
 AUTH_USER_MODEL = 'accounts.User'
 
