@@ -1,5 +1,4 @@
-"""
-WSGI config for Farmzone project.
+"""WSGI config for Farmzone project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

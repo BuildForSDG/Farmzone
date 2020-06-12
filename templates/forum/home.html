@@ -1,0 +1,48 @@
+{% extends 'baseforum.html' %}
+{% block content %}
+    {% load static %}
+
+    <div class="page-header" style="background: url('{% static 'assets/img/banner1.jpg' %}');">
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-9 col-xs-12 text-center">
+                    <div class="contents">
+                        <h5 class="head-title" >Welcome to The Largest <span class="year">Farmers Forum</span></h5>
+                        <p>Talk about everything from land, animals crops, or
+                            anything you are thinking about.</p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<table class="table table-borderless">
+            <thead>
+                <tr class="table-success">
+                    <th scope="col">Board</th>
+                    <th scope="col">Posts</th>
+                    <th scope="col">Topics</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for board in boards %}
+                <tr>
+                    <td scope="row">
+                        <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
+                        <small class="text-muted d-block">
+                            {{ board.description }}
+                        </small>
+                    </td>
+                    <td class="align-middle">
+                        {{ board.get_posts_count }}
+                    </td>
+                    <td class="align-middle">
+                        {{ board.topics.count }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

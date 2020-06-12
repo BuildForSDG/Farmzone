@@ -1,9 +1,17 @@
-# FILES
+ # FILES
 **/**/.pyc
 .DS_Store
+*.iml
 
 # DIRECTORIES
 **/**/__pycache__
 .vscode/
+.idea/
+.vs/
 .pytest_cache
 src.egg-info
+venv/
+.venv/
+env.sh
+/.mypy_cache/
+/.env
