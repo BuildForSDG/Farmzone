@@ -13,6 +13,7 @@ import django_heroku
 
 from decouple import config
 from dj_database_url import parse as db_url
+
 # import dj_database_url
 
 # import dj_database_url
@@ -65,7 +66,6 @@ INSTALLED_APPS = [
     'frontend.forum',
     'widget_tweaks',
 
-
 ]
 
 MIDDLEWARE = [
@@ -117,7 +117,7 @@ DATABASES = {
         cast=db_url
     )
 }
-#AUTH_USER_MODEL = 'farmzone_users.FarmzoneUser'
+# AUTH_USER_MODEL = 'farmzone_users.FarmzoneUser'
 
 
 AUTH_USER_MODEL = 'accounts.User'
