@@ -9,6 +9,7 @@ class Category(models.Model):
 
     @return:
     """
+
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
@@ -34,8 +35,8 @@ class Ad(models.Model):
     featured = models.BooleanField(default=False)
     status = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now=True)
-    # image = models.ImageField(verbose_name="Ad Image", upload_to="ad_images",
-    #                         default="ad_images/default.png")
+    image = models.ImageField(verbose_name="Ad Image", upload_to="ad_images",
+                              default="ad_images/default.png")
 
     tags = TaggableManager()
 
