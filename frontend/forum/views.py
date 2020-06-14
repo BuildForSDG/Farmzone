@@ -24,6 +24,11 @@ class TopicListView(ListView):
     paginate_by = 20
 
     def get_context_data(self, **kwargs):
+        """
+
+        @param kwargs:
+        @return:
+        """
         kwargs['board'] = self.board
         return super().get_context_data(**kwargs)
 
@@ -40,6 +45,11 @@ class PostListView(ListView):
     paginate_by = 20
 
     def get_context_data(self, **kwargs):
+        """
+
+        @param kwargs:
+        @return:
+        """
         session_key = 'viewed_topic_{}'.format(self.topic.pk)
 
         if not self.request.session.get(session_key, False):
@@ -51,6 +61,10 @@ class PostListView(ListView):
         return super().get_context_data(**kwargs)
 
     def get_queryset(self):
+        """
+
+        @return:
+        """
         self.topic = get_object_or_404(Topic, board__pk=self.kwargs.get('pk'), pk=self.kwargs.get('topic_pk'))
         queryset = self.topic.posts.order_by('created_at')
         return queryset
@@ -58,6 +72,12 @@ class PostListView(ListView):
 
 @login_required
 def new_topic(request, pk):
+    """
+
+    @param request:
+    @param pk:
+    @return:
+    """
     board = get_object_or_404(Board, pk=pk)
 
     if request.method == 'POST':
@@ -84,6 +104,13 @@ def new_topic(request, pk):
 
 
 def topic_posts(request, pk, topic_pk):
+    """
+
+    @param request:
+    @param pk:
+    @param topic_pk:
+    @return:
+    """
     topic = get_object_or_404(Topic, board__pk=pk, pk=topic_pk)
     topic.views += 1
     topic.save()
@@ -92,6 +119,13 @@ def topic_posts(request, pk, topic_pk):
 
 @login_required
 def reply_topic(request, pk, topic_pk):
+    """
+
+    @param request:
+    @param pk:
+    @param topic_pk:
+    @return:
+    """
     topic = get_object_or_404(Topic, board__pk=pk, pk=topic_pk)
 
     if (request.method == 'POST'):
@@ -123,10 +157,19 @@ class PostUpdateView(UpdateView):
     context_object_name = 'post'
 
     def get_queryset(self):
+        """
+
+        @return:
+        """
         queryset = super().get_queryset()
         return queryset.filter(created_by=self.request.user)
 
     def form_valid(self, form):
+        """
+
+        @param form:
+        @return:
+        """
         post = form.save(commit=False)
         post.updated_by = self.request.user
         post.updated_at = timezone.now()
