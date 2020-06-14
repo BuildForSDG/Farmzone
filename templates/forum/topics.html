@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseforum.html' %}
 
 <br>
 <br>
@@ -34,12 +34,13 @@
             </div>
         </div>
     </div>
+    {% if request.user.is_authenticated %}
 	<div class="mb-4">
 		<a class="btn btn-primary" href="{% url 'new_topic' board.pk %}">
 			New Topic
 		</a>
 	</div>
-
+    {% endif %}
 	{% for topic in topics %}
 		{% url 'topic_posts' board.pk topic.pk as topic_url %}
 		<div class="list-group mb-2">

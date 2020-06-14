@@ -12,6 +12,7 @@ class AdCreateForm(forms.ModelForm):
 
     class Meta:
         model = Ad
+
         exclude = ("user",)
 
     def __init__(self, *args, **kwargs):

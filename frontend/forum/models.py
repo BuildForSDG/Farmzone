@@ -21,6 +21,7 @@ class Board(models.Model):
     def get_last_post(self):
         return Post.objects.filter(topic__board=self).order_by('-created_at').first()
 
+
 class Topic(models.Model):
     subject = models.CharField(max_length=255)
     last_updated = models.DateTimeField(auto_now_add=True)
@@ -46,6 +47,7 @@ class Topic(models.Model):
         if self.has_many_pages(count):
             return range(1, 5)
         return range(1, count + 1)
+
 
 class Post(models.Model):
     message = models.TextField(max_length=4000)
