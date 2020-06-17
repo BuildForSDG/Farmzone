@@ -48,5 +48,5 @@ urlpatterns = [
                   path('categories', include('frontend.category.urls')),
 
                   path('', include('frontend.forum.urls')),
-
+                  path('', include('frontend.ads.urls'))
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,9 +3,8 @@ from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
-from .forms import *
 from frontend.core.mixins import CustomLoginRequiredMixin
-from frontend.core.models import *
+from .forms import *
 
 
 class AdDetailsView(DetailView):
@@ -161,3 +160,23 @@ class AdDeleteView(DeleteView):
         if not obj.user == self.request.user:
             raise Http404
         return obj
+
+
+class SearchView(DetailView):
+    model = Ad
+    template_name = 'ads/search_results.html'
+    context_object_name = 'all_search_results'
+
+    def get_queryset(self):
+        """
+
+        @return:
+        """
+        result = super(SearchView, self).get_queryset()
+        query = self.request.GET.get('search')
+        if query:
+            postresult = Ad.objects.filter(title__contains=query)
+            result = postresult
+        else:
+            result = None
+        return result
