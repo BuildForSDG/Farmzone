@@ -35,7 +35,7 @@
                                     </div>
                                 {% endfor %}
                             {% endif %}
-                            <form action="" method="post" enctype="multipart/form-data">
+                            {% comment %}<form action="" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="inner-box">
                                     <div class="dashboard-box">
@@ -120,7 +120,16 @@
                                                    accept="image/*"
                                                    name="image">
                                         </label>
+                                    </div>{% endcomment %}
+                            <form action="" method="post" enctype="multipart/form-data">
+                                <div class="inner-box">
+                                    <div class="dashboard-box">
+                                        <h2 class="dashbord-title">Ad Detail</h2>
                                     </div>
+                                    {% csrf_token %}
+                                    <p class="id_status,id_featured">
+                                    {{ form.as_p }}
+                                    </p>
                                     <button class="btn btn-common" type="submit">Update Ad</button>
                                 </div>
                             </form>

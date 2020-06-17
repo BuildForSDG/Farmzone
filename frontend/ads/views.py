@@ -141,6 +141,7 @@ class AdUpdateView(CustomLoginRequiredMixin, UpdateView):
         return obj
 
 
+
 class AdDeleteView(DeleteView):
     model = Ad
     slug_field = "id"
@@ -172,11 +173,11 @@ class SearchView(DetailView):
 
         @return:
         """
-        result = super(SearchView, self).get_queryset()
+        results = super(SearchView, self).get_queryset()
         query = self.request.GET.get('search')
         if query:
             postresult = Ad.objects.filter(title__contains=query)
-            result = postresult
+            results = postresult
         else:
-            result = None
-        return result
+            results = None
+        return results

@@ -5,7 +5,6 @@ from frontend.core.models import *
 
 
 class AdCreateForm(forms.ModelForm):
-
     """
     Add an Ad
     """
@@ -43,10 +42,10 @@ class AdCreateForm(forms.ModelForm):
 
 
 class AdUpdateForm(forms.ModelForm):
-
     """
     Up date ad
     """
+
     class Meta:
         model = Ad
         exclude = ("user",)
@@ -77,6 +76,7 @@ class AdUpdateForm(forms.ModelForm):
                     raise ValidationError("Image file too large ( > 1mb )")
         else:
             raise ValidationError("Couldn't read uploaded images2")
+
 
 
 class AdImageForm(forms.ModelForm):

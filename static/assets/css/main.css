@@ -5352,3 +5352,12 @@ footer .menu li a:hover {
 .error-content .description a:hover {
     color: #5bb653
 }
+
+.id_status, label[for="id_status"], input[name="status"] {
+  position: absolute;
+  display: none;
+}
+.id_featured, label[for="id_featured"], input[name="featured"] {
+  position: absolute;
+  display: none;
+}
