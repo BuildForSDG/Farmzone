@@ -20,7 +20,7 @@ setup(
         'distlib==0.3.0',
         'dj-database-url==0.5.0',
         'Django==3.0.7',
-        'djangorestframework==3.11.0',
+        'djangorestframework==3.11.2',
         'docutils==0.16',
         'filelock==3.0.12',
         'importlib-metadata==1.6.0',
