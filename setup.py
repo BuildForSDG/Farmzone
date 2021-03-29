@@ -40,7 +40,7 @@ setup(
         'psycopg2==2.8.5',
         'ptyprocess==0.6.0',
         'py==1.8.1',
-        'Pygments==2.6.1',
+        'Pygments==2.7.4',
         'pylint==2.5.2',
         'pyparsing==2.4.7',
         'pytest==5.4.2',

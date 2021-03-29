@@ -1,7 +1,7 @@
 Django==3.0.7
 Markdown==3.0.1
 Pillow==7.1.2
-Pygments==2.6.1
+Pygments==2.7.4
 asgiref==3.2.7
 backcall==0.1.0
 coverage
