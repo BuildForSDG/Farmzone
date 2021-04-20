@@ -39,7 +39,7 @@ setup(
         'prompt-toolkit==3.0.5',
         'psycopg2==2.8.5',
         'ptyprocess==0.6.0',
-        'py==1.8.1',
+        'py==1.10.0',
         'Pygments==2.6.1',
         'pylint==2.5.2',
         'pyparsing==2.4.7',
