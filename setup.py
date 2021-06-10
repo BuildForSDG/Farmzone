@@ -19,7 +19,7 @@ setup(
         "decorator==4.4.2",
         'distlib==0.3.0',
         'dj-database-url==0.5.0',
-        'Django==3.0.7',
+        'Django==3.1.12',
         'djangorestframework==3.11.0',
         'docutils==0.16',
         'filelock==3.0.12',
