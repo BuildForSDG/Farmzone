@@ -24,7 +24,7 @@ setup(
         'docutils==0.16',
         'filelock==3.0.12',
         'importlib-metadata==1.6.0',
-        'ipython==7.14.0',
+        'ipython==7.16.3',
         'ipython-genutils==0.2.0',
         'isort==4.3.21',
         'jedi==0.17.0',
